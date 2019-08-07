@@ -1,6 +1,8 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <stack>
+
+// https://www.acmicpc.net/problem/10799
 
 struct Element
 {
