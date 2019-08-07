@@ -2,7 +2,11 @@
 #include <string>
 #include <stack>
 
-// https://www.acmicpc.net/problem/10799
+
+/**
+	@brief PS10799 쇠막대기 : https://www.acmicpc.net/problem/10799
+	@details
+*/
 
 struct Element
 {
