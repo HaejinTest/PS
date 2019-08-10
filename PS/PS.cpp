@@ -1,32 +1,43 @@
 ﻿#include <iostream>
+#include <cassert>
 #include <cstring>
+#include <numeric>
 
-int gMemo[1001];
+constexpr int MIN_N = 1;
+constexpr int MAX_N = 90;
 
-int PSRecursively(int num)
+int64_t gMemo[MAX_N + 1];
+
+auto PSRecursively(int num)
 {
+	if (num == 1 || num == 2)
+	{
+		return gMemo[num];
+	}
+
 	if (gMemo[num] == -1)
 	{
-		gMemo[num] = (PSRecursively(num - 1)+ PSRecursively(num - 2)) % 10007;
-
-		return gMemo[num];
+		gMemo[num] = PSRecursively(num - 1) + PSRecursively(num - 2);
 	}
 
 	return gMemo[num];
 }
 
-int main()
+int main(void)
 {
-	std::ios_base::sync_with_stdio(false);
-	memset(gMemo, -1, sizeof gMemo);
-
 	int num;
+
 	std::cin >> num;
 
-	gMemo[1] = 1;
-	gMemo[2] = 2;
-	
-	int result = PSRecursively(num); 
+	if (std::cin.fail())
+	{
+		assert(0 && L"Invalid Number");
 
-	std::cout << result << std::endl;
+		return 0;
+	}
+	
+	memset(gMemo, -1, sizeof gMemo);
+	gMemo[1] = 1;
+	gMemo[2] = 1;
+	std::cout << PSRecursively(num) << std::endl;
 }
