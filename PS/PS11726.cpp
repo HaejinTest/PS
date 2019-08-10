@@ -1,13 +1,13 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cstring>
 
 /**
-	@brief PS11726 2¡¿n Å¸ÀÏ¸µ : https://www.acmicpc.net/problem/11726
+	@brief PS11726 2Ã—n íƒ€ì¼ë§ : https://www.acmicpc.net/problem/11726
 	@details
-	DP ¹®Á¦, Á÷Á¢ »ç°¢Çü Å¸ÀÏÀ» ±×·Áº¸´Â °Ô Áß¿äÇÏ´Ù.
-	¹®Á¦¸¦ Æ²¸° ÀÌÀ¯´Â
-	1) % 10007À» ¸¶Áö¸· °ª¿¡ ÇØ¼­ : ¿À¹öÇÃ·Î¿ì ¹ß»ı
-	2) Çì´õ¸¦ stringÀ» »ç¿ëÇØ¼­(cstringÀ¸·Î Á¤È®È÷ ÇØÁà¾ßÇÔ)
+	DP ë¬¸ì œ, ì§ì ‘ ì‚¬ê°í˜• íƒ€ì¼ì„ ê·¸ë ¤ë³´ëŠ” ê²Œ ì¤‘ìš”í•˜ë‹¤.
+	ë¬¸ì œë¥¼ í‹€ë¦° ì´ìœ ëŠ”
+	1) % 10007ì„ ë§ˆì§€ë§‰ ê°’ì— í•´ì„œ : ì˜¤ë²„í”Œë¡œìš° ë°œìƒ
+	2) í—¤ë”ë¥¼ stringì„ ì‚¬ìš©í•´ì„œ(cstringìœ¼ë¡œ ì •í™•íˆ í•´ì¤˜ì•¼í•¨)
 */
 
 namespace ps11726
@@ -26,7 +26,7 @@ namespace ps11726
 		return gMemo[num];
 	}
 
-	/*int main()
+	int main()
 	{
 		std::ios_base::sync_with_stdio(false);
 		memset(gMemo, -1, sizeof gMemo);
@@ -40,5 +40,7 @@ namespace ps11726
 		int result = PSRecursively(num);
 
 		std::cout << result << std::endl;
-	}*/
+
+		return 0;
+	}
 }

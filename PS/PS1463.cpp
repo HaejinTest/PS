@@ -93,19 +93,21 @@ namespace ps1463recursively
 		return 0;
 	}
 
-	//int main()
-	//{
-	//	std::ios_base::sync_with_stdio(false);
-	//
-	//	int num;
-	//
-	//	std::cin >> num;
-	//	std::memset(gMemo, -1, sizeof gMemo);
-	//
-	//	int result = PSRecursively(num);
-	//
-	//	std::cout << result << std::endl;
-	//}
+	int main()
+	{
+		std::ios_base::sync_with_stdio(false);
+	
+		int num;
+	
+		std::cin >> num;
+		std::memset(gMemo, -1, sizeof gMemo);
+	
+		int result = PSRecursively(num);
+	
+		std::cout << result << std::endl;
+
+		return 0;
+	}
 }
 
 namespace ps1463
@@ -124,7 +126,7 @@ namespace ps1463
 
 	int dp[1000001];
 
-	/*int main()
+	int main()
 	{
 		std::ios_base::sync_with_stdio(false);
 
@@ -162,5 +164,7 @@ namespace ps1463
 		}
 
 		std::cout << dp[num] << std::endl;
-	}*/
+
+		return 0;
+	}
 }
