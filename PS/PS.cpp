@@ -1,52 +1,43 @@
 ﻿#include <iostream>
-#include <vector>
-#include <numeric>
 
 constexpr int MIN_N = 1;
-constexpr int MAX_N = 100;
-constexpr int64_t MOD = 1000000000;
-std::vector<std::vector<int64_t>> gMemo(MAX_N + 1, std::vector<int64_t>(10));
+constexpr int MAX_N = 1000;
+constexpr int MOD = 10007;
+constexpr int DIGIT = 10;
+int gMemo[MAX_N + 1][DIGIT];
 
 int main(void)
 {
-	for (int index = 1; index <= 9; index++)
+	std::ios_base::sync_with_stdio(false);
+
+	for (int index = 0; index < DIGIT; index++)
 	{
 		gMemo[1][index] = 1;
 	}
 
 	int num;
-
 	std::cin >> num;
-
+	
 	for (int n = 2; n <= num; n++)
 	{
-		for (int index = 0; index <= 9; index++)
+		for (int index = 0; index < DIGIT; index++)
 		{
 			gMemo[n][index] = 0;
-
-			if (index == 0)
+			
+			for (int count = 0; count <= index; count++)
 			{
-				gMemo[n][index] += gMemo[n - 1][index + 1];
-			}
-			else if (index == 9)
-			{
-				gMemo[n][index] += gMemo[n - 1][index - 1];
-			}
-			else
-			{
-				gMemo[n][index] = gMemo[n - 1][index - 1] + gMemo[n - 1][index + 1];
+				gMemo[n][index] += gMemo[n - 1][count];
 			}
 
 			gMemo[n][index] %= MOD;
 		}
 	}
-	
+
 	int result = 0;
 
-	for (int index = 0; index <= 9; index++)
+	for (int index = 0; index < DIGIT; index++)
 	{
-		result += gMemo[num][index];
-		result %= MOD;
+		result = (result + gMemo[num][index]) % MOD;
 	}
 
 	std::cout << result << std::endl;
