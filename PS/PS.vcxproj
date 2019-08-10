@@ -162,8 +162,10 @@
     </ClCompile>
     <ClCompile Include="PS.cpp" />
     <ClCompile Include="PS10799.cpp" />
+    <ClCompile Include="PS10844.cpp" />
     <ClCompile Include="PS11726.cpp" />
     <ClCompile Include="PS1463.cpp" />
+    <ClCompile Include="PS2193.cpp" />
     <ClCompile Include="PS9095.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
