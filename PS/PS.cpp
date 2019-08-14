@@ -1,46 +1,33 @@
 ﻿#include <iostream>
+#include <algorithm>
+#include <array>
 
-constexpr int MIN_N = 1;
-constexpr int MAX_N = 1000;
-constexpr int MOD = 10007;
-constexpr int DIGIT = 10;
-int gMemo[MAX_N + 1][DIGIT];
+constexpr int MAX_JUICE_COUNT = 10000;
+int gQuantity[MAX_JUICE_COUNT + 1];
+int gMemo[MAX_JUICE_COUNT + 1];
 
 int main(void)
 {
-	std::ios_base::sync_with_stdio(false);
-
-	for (int index = 0; index < DIGIT; index++)
-	{
-		gMemo[1][index] = 1;
-	}
-
 	int num;
+	int index = 1;
+	int quantity = 0;
+
 	std::cin >> num;
+	int count = num;
+	while (count--)
+	{
+		std::cin >> quantity;
+		gQuantity[index++] = quantity;
+	}
+
+	gMemo[1] = gQuantity[1];
+	gMemo[2] = gQuantity[1] + gQuantity[2];
 	
-	for (int n = 2; n <= num; n++)
+	for (int index = 3; index < num + 1; index++)
 	{
-		for (int index = 0; index < DIGIT; index++)
-		{
-			gMemo[n][index] = 0;
-			
-			for (int count = 0; count <= index; count++)
-			{
-				gMemo[n][index] += gMemo[n - 1][count];
-			}
-
-			gMemo[n][index] %= MOD;
-		}
+		std::array<int, 3> arr = {gMemo[index - 1], gQuantity[index] + gMemo[index -2], gQuantity[index] + gQuantity[index - 1] + gMemo[index - 3]};
+		gMemo[index] = *std::max_element(arr.begin(), arr.end());
 	}
 
-	int result = 0;
-
-	for (int index = 0; index < DIGIT; index++)
-	{
-		result = (result + gMemo[num][index]) % MOD;
-	}
-
-	std::cout << result << std::endl;
-
-	return 0;
+	std::cout << gMemo[num] << std::endl;
 }
