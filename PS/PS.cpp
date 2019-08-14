@@ -1,33 +1,63 @@
 ﻿#include <iostream>
-#include <algorithm>
-#include <array>
+#include <cstring>
 
-constexpr int MAX_JUICE_COUNT = 10000;
-int gQuantity[MAX_JUICE_COUNT + 1];
-int gMemo[MAX_JUICE_COUNT + 1];
+constexpr int MAX_NUM = 1000;
+int gMemo[MAX_NUM + 1];
+int gA[MAX_NUM + 1];
+
+auto Max(int a, int b)
+{
+	if (a > b)
+	{
+		return a;
+	}
+	else
+	{
+		return b;
+	}
+}
 
 int main(void)
 {
 	int num;
-	int index = 1;
-	int quantity = 0;
 
 	std::cin >> num;
+
 	int count = num;
+	int index = 1;
+
 	while (count--)
 	{
-		std::cin >> quantity;
-		gQuantity[index++] = quantity;
+		int val;
+		std::cin >> val;
+		gA[index++] = val;
 	}
 
-	gMemo[1] = gQuantity[1];
-	gMemo[2] = gQuantity[1] + gQuantity[2];
-	
-	for (int index = 3; index < num + 1; index++)
+	for (int count = 1; count <= num; count++)
 	{
-		std::array<int, 3> arr = {gMemo[index - 1], gQuantity[index] + gMemo[index -2], gQuantity[index] + gQuantity[index - 1] + gMemo[index - 3]};
-		gMemo[index] = *std::max_element(arr.begin(), arr.end());
+		gMemo[count] = 1;
 	}
 
-	std::cout << gMemo[num] << std::endl;
+	for (int i = 1; i <= num; i++)
+	{
+		for (int j = 1; j < i; j++)
+		{
+			if (gA[j] < gA[i] && gMemo[i] < gMemo[j] + 1)
+			{
+				gMemo[i] = gMemo[j] + 1;
+			}
+		}
+	}
+
+	int max = gMemo[1];
+
+	for (int i = 1; i <= num; i++)
+	{
+		if (gMemo[i] > max)
+		{
+			max = gMemo[i];
+		}
+	}
+
+	std::cout << max << std::endl;
 }
