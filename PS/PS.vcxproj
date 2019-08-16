@@ -167,6 +167,7 @@
     <ClCompile Include="PS11057.cpp" />
     <ClCompile Include="PS11726.cpp" />
     <ClCompile Include="PS1463.cpp" />
+    <ClCompile Include="PS1967.cpp" />
     <ClCompile Include="PS2156.cpp" />
     <ClCompile Include="PS2193.cpp" />
     <ClCompile Include="PS9095.cpp" />
