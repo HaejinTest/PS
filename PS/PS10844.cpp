@@ -15,7 +15,7 @@
 	5 + 9 % 10은
 	(5 % 10 + 9 % 10) % 10과 동일하기 때문임
 */
-namespace PS10844
+namespace ps10844
 {
 	constexpr int MIN_N = 1;
 	constexpr int MAX_N = 100;

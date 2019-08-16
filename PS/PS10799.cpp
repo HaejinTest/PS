@@ -14,7 +14,7 @@ struct Element
 	int index;
 };
 
-void PS10799()
+void ps10799()
 {
 	std::string input;
 	std::stack<Element> stack;

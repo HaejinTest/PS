@@ -56,5 +56,11 @@
     <ClCompile Include="PS1967.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="PS11725.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PS11724.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

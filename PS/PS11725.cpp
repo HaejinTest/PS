@@ -12,7 +12,7 @@
 	사실 여태까지 별거 아니라고 생각했는데, 매번 flush를 해주는 일이 생각보다 비용이 엄청나군
 	앞으론 \n로 통일
 */
-namespace PS11725
+namespace ps11725
 {
 	constexpr int MAX_NUM = 100001;
 
@@ -62,5 +62,7 @@ namespace PS11725
 		{
 			std::cout << gParent[index] << "\n";
 		}
+
+		return 0;
 	}
 }

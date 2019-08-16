@@ -10,7 +10,7 @@
 	1) Overlapping Subproblem : 큰 문제의 풀이와 작은 문제의 풀이가 동일함. 문제를 작은 문제로 쪼갤 수 있음.
 	2) Optimal Substructure임 : 큰 문제의 정답은 작은 문제의 정답에서 구할 수 있음.
 */
-namespace PS11057
+namespace ps11057
 {
 	constexpr int MIN_N = 1;
 	constexpr int MAX_N = 1000;

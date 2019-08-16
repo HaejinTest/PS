@@ -1,25 +1,28 @@
 ﻿#include <iostream>
 #include <vector>
+#include <utility>
 
-constexpr int MAX_NUM = 100001;
-
-std::vector<int> gTree[MAX_NUM];
-int gParent[MAX_NUM];
-bool bVisited[MAX_NUM];
+// 3초
+// 256MB
+constexpr int VERTEX_COUNT_MAX = 1000;
+constexpr int EDGE_COUNT_MAX = (VERTEX_COUNT_MAX * (VERTEX_COUNT_MAX - 1)) / 2;
+std::vector<int> gGraph[VERTEX_COUNT_MAX + 1];
+bool gbVisited[VERTEX_COUNT_MAX + 1];
+int gConnectedComponentCount = 0;
 
 void DFS(int start)
 {
-	bVisited[start] = true;
-	auto size = gTree[start].size();
+	gbVisited[start] = true;
 
-	for (int index = 0; index < size; index++)
+	size_t edgeSize = gGraph[start].size();
+
+	for (int index = 0; index < edgeSize; index++)
 	{
-		auto node = gTree[start][index];
+		int vertex = gGraph[start][index];
 
-		if (bVisited[node] == false)
+		if (gbVisited[vertex] == false)
 		{
-			gParent[node] = start;
-			DFS(node);
+			DFS(vertex);
 		}
 	}
 }
@@ -27,26 +30,38 @@ void DFS(int start)
 int main(void)
 {
 	std::ios_base::sync_with_stdio(false);
-	
-	int num;
-	std::cin >> num;
 
-	int count = num - 1;
+	int vertexCount;
+	int edgeCount;
+	std::cin >> vertexCount >> edgeCount;
 
-	while (count--)
+	int inputCount = edgeCount;
+
+	while (inputCount--)
 	{
 		int vertex1;
 		int vertex2;
-
 		std::cin >> vertex1 >> vertex2;
-		gTree[vertex1].push_back(vertex2);
-		gTree[vertex2].push_back(vertex1);
+
+		gGraph[vertex1].push_back(vertex2);
+		gGraph[vertex2].push_back(vertex1);
 	}
 
-	DFS(1);
-
-	for (int index = 2; index <= num; index++)
+	for (int index = 1; index <= VERTEX_COUNT_MAX; index++)
 	{
-		std::cout << gParent[index] << "\n";
+		gbVisited[index] = false;
 	}
+
+	for (int index = 1; index <= vertexCount; index++)
+	{
+		if (gbVisited[index] == false)
+		{
+			DFS(index);
+			gConnectedComponentCount++;
+		}
+	}
+
+	std::cout << gConnectedComponentCount << "\n";
+
+	return 0;
 }
