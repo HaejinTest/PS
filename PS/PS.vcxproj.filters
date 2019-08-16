@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\그래프">
+      <UniqueIdentifier>{b8182275-cac2-42ac-95a2-c159970f63e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\트리">
+      <UniqueIdentifier>{05d71d1c-ea7f-4748-8f8c-faec6d591dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\DP">
+      <UniqueIdentifier>{0c55b12c-bd13-4b05-a51e-be8d74b4d5a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\스택">
+      <UniqueIdentifier>{bd0b0af9-d2a7-4f6d-b826-0448c4343f41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -26,41 +38,44 @@
     <ClCompile Include="PS.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PS10799.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS1463.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS11726.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS9095.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS2193.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS10844.cpp">
+    <ClCompile Include="PS1707.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="PS11057.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS2156.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS11053.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS1967.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\그래프</Filter>
     </ClCompile>
     <ClCompile Include="PS11725.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\트리</Filter>
     </ClCompile>
     <ClCompile Include="PS11724.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\그래프</Filter>
+    </ClCompile>
+    <ClCompile Include="PS11726.cpp">
+      <Filter>소스 파일\DP</Filter>
+    </ClCompile>
+    <ClCompile Include="PS11053.cpp">
+      <Filter>소스 파일\DP</Filter>
+    </ClCompile>
+    <ClCompile Include="PS10844.cpp">
+      <Filter>소스 파일\DP</Filter>
+    </ClCompile>
+    <ClCompile Include="PS10799.cpp">
+      <Filter>소스 파일\스택</Filter>
+    </ClCompile>
+    <ClCompile Include="PS9095.cpp">
+      <Filter>소스 파일\DP</Filter>
+    </ClCompile>
+    <ClCompile Include="PS2193.cpp">
+      <Filter>소스 파일\DP</Filter>
+    </ClCompile>
+    <ClCompile Include="PS2156.cpp">
+      <Filter>소스 파일\DP</Filter>
+    </ClCompile>
+    <ClCompile Include="PS1967.cpp">
+      <Filter>소스 파일\트리</Filter>
+    </ClCompile>
+    <ClCompile Include="PS1463.cpp">
+      <Filter>소스 파일\DP</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
