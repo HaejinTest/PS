@@ -1,146 +1,102 @@
 ﻿#include <iostream>
 #include <vector>
+#include <algorithm>
+#include <queue>
 
-struct Node
+constexpr int VERTEX_MAX = 1000;
+std::vector<int> gGraph[VERTEX_MAX + 1];
+bool gbVisited[VERTEX_MAX + 1];
+
+void DFS(int start)
 {
-	char Symbol;
-	bool bLeft;
-};
+	gbVisited[start] = true;
+	std::cout << start << " ";
 
-constexpr int NODE_MAX = 26;
-std::vector<Node> gTree[NODE_MAX + 1];
+	int size = static_cast<int>(gGraph[start].size());
 
-void PreeOrderTraversal(int start)
-{
-	size_t size = gTree[start].size();
-
-	if (size == 0)
+	for (int count = 0; count < size; count++)
 	{
-		std::cout << (char)(start + 'A');
+		int vertex = gGraph[start][count];
 
-		return;
-	}
-	else if (size == 1)
-	{
-		Node node = gTree[start][0];
-
-		std::cout << (char)(start + 'A');
-		PreeOrderTraversal(node.Symbol - 'A');
-	}
-	else
-	{
-		Node node1 = gTree[start][0];
-		Node node2 = gTree[start][1];
-
-		std::cout << (char)(start + 'A');
-		PreeOrderTraversal(node1.Symbol - 'A');
-		PreeOrderTraversal(node2.Symbol - 'A');
-	}
-}
-
-void InOrderTraversal(int start)
-{
-	size_t size = gTree[start].size();
-
-	if (size == 0)
-	{
-		std::cout << (char)(start + 'A');
-
-		return;
-	}
-	else if (size == 1)
-	{
-		Node node = gTree[start][0];
-
-		if (node.bLeft)
+		if (gbVisited[vertex] == false)
 		{
-			InOrderTraversal(node.Symbol - 'A');
-			std::cout << (char)(start + 'A');
-		}
-		else
-		{
-			std::cout << (char)(start + 'A');
-			InOrderTraversal(node.Symbol - 'A');
+			DFS(vertex);
 		}
 	}
-	else
-	{
-		Node node1 = gTree[start][0];
-		Node node2 = gTree[start][1];
-
-		InOrderTraversal(node1.Symbol - 'A');
-		std::cout << (char)(start + 'A');
-		InOrderTraversal(node2.Symbol - 'A');
-	}
 }
 
-void PostOrderTraversal(int start)
+void BFS(int start)
 {
-	size_t size = gTree[start].size();
+	std::queue<int> q;
 
-	if (size == 0)
+	q.push(start);
+	gbVisited[start] = true;
+
+	while (q.empty() == false)
 	{
-		std::cout << (char)(start + 'A');
+		int vertex = q.front();
+		q.pop();
+		std::cout << vertex << " ";
 
-		return;
-	}
-	else if (size == 1)
-	{
-		Node node = gTree[start][0];
+		int size = static_cast<int>(gGraph[vertex].size());
 
-		PostOrderTraversal(node.Symbol - 'A');
-		std::cout << (char)(start + 'A');
-	}
-	else
-	{
-		Node node1 = gTree[start][0];
-		Node node2 = gTree[start][1];
+		for (int count = 0; count < size; count++)
+		{
+			int node = gGraph[vertex][count];
 
-		PostOrderTraversal(node1.Symbol - 'A');
-		PostOrderTraversal(node2.Symbol - 'A');
-		std::cout << (char)(start + 'A');
+			if (gbVisited[node] == false)
+			{
+				gbVisited[node] = true;
+				q.push(node);
+			}
+		}
 	}
 }
 
+// vertex 1~N
 int main(void)
 {
 	std::ios_base::sync_with_stdio(false);
 
-	int nodeCount;
-	std::cin >> nodeCount;
+	int vertexCount;
+	int edgeCount;
+	int startVertex;
 
-	for (int count = 0; count < nodeCount; count++)
+	std::cin >> vertexCount >> edgeCount >> startVertex;
+	
+	for (int count = 1; count < VERTEX_MAX + 1; count++)
 	{
-		char node1;
-		char node2;
-		char node3;
-
-		std::cin >> node1 >> node2 >> node3;
-
-		if (node2 != '.')
-		{
-			Node node;
-			node.Symbol = node2;
-			node.bLeft = true;
-
-			gTree[(int)(node1 - 'A')].push_back(node);
-		}
-
-		if (node3 != '.')
-		{
-			Node node;
-			node.Symbol = node3;
-			node.bLeft = false;
-
-			gTree[(int)(node1 - 'A')].push_back(node);
-		}
+		gbVisited[count] = false;
 	}
 
-	PreeOrderTraversal(0);
+	for (int count = 0; count < edgeCount; count++)
+	{
+		int vertex1;
+		int vertex2;
+
+		std::cin >> vertex1 >> vertex2;
+
+		gGraph[vertex1].push_back(vertex2);
+		gGraph[vertex2].push_back(vertex1);
+	}
+
+	for (int count = 1; count < VERTEX_MAX + 1; count++)
+	{
+		std::sort(gGraph[count].begin(), gGraph[count].end());
+	}
+
+	// graph complete
+	DFS(startVertex);
+
 	std::cout << "\n";
-	InOrderTraversal(0);
-	std::cout << "\n";
-	PostOrderTraversal(0);
+
+	for (int count = 1; count < VERTEX_MAX + 1; count++)
+	{
+		gbVisited[count] = false;
+	}
+
+	BFS(startVertex);
+
 
 	return 0;
 }

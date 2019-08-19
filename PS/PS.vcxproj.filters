@@ -83,5 +83,8 @@
     <ClCompile Include="PS1991.cpp">
       <Filter>소스 파일\트리</Filter>
     </ClCompile>
+    <ClCompile Include="PS1260.cpp">
+      <Filter>소스 파일\그래프</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

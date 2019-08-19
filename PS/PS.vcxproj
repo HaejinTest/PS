@@ -168,6 +168,7 @@
     <ClCompile Include="PS11724.cpp" />
     <ClCompile Include="PS11725.cpp" />
     <ClCompile Include="PS11726.cpp" />
+    <ClCompile Include="PS1260.cpp" />
     <ClCompile Include="PS1463.cpp" />
     <ClCompile Include="PS1707.cpp" />
     <ClCompile Include="PS1967.cpp" />
