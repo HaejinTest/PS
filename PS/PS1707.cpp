@@ -21,76 +21,59 @@
 */
 namespace ps1707
 {
-	enum class eColor
+	enum class eStatus
 	{
-		NotVisited = 0,
-		Red = 1,
-		Blue = 2
+		NonVisited = 0,
+		Blue = 1,
+		Red = 2
 	};
 
-	constexpr short VERTEX_MAX = 20000;
-	constexpr int EDGE_MAX = 200000;
-	std::vector<short> gGraph[VERTEX_MAX + 1];
-	eColor gColor[VERTEX_MAX + 1];
+	constexpr int VERTEX_MAX = 20000;
+	std::vector<int> gGraph[VERTEX_MAX + 1];
+	eStatus gVertexStatus[VERTEX_MAX + 1];
+	bool gbVertexEqual = false;
 
-	void DFS(short start, eColor color)
+	void ClearVertexStatus(eStatus* status, int max)
 	{
-		gColor[start] = color;
-		size_t size = gGraph[start].size();
-
-		for (short index = 0; index < size; index++)
+		for (int count = 1; count < max; count++)
 		{
-			short vertex = gGraph[start][index];
-
-			if (gColor[vertex] == eColor::NotVisited)
-			{
-				if (color == eColor::Blue)
-				{
-					DFS(vertex, eColor::Red);
-				}
-				else
-				{
-					DFS(vertex, eColor::Blue);
-				}
-			}
+			status[count] = eStatus::NonVisited;
 		}
 	}
 
-	void BFS(int start)
+	void DFS(int start, eStatus status)
 	{
-		std::queue<short> vertexQueue;
-
-		if (gColor[start] != eColor::NotVisited)
+		if (gVertexStatus[start] != eStatus::NonVisited)
 		{
 			return;
 		}
 
-		vertexQueue.push(start);
-		gColor[start] = eColor::Red;
+		gVertexStatus[start] = status;
 
-		while (vertexQueue.empty() == false)
+		size_t size = gGraph[start].size();
+
+		for (int count = 0; count < size; count++)
 		{
-			short vertex = vertexQueue.front();
-			vertexQueue.pop();
+			int vertex = gGraph[start][count];
 
-			size_t size = gGraph[vertex].size();
-
-			for (short index = 0; index < size; index++)
+			if (gVertexStatus[vertex] == eStatus::NonVisited)
 			{
-				short node = gGraph[vertex][index];
-
-				if (gColor[node] == eColor::NotVisited)
+				if (gVertexStatus[start] == eStatus::Blue)
 				{
-					if (gColor[vertex] == eColor::Red)
-					{
-						gColor[node] = eColor::Blue;
-					}
-					else
-					{
-						gColor[node] = eColor::Red;
-					}
+					DFS(vertex, eStatus::Red);
+				}
+				else
+				{
+					DFS(vertex, eStatus::Blue);
+				}
+			}
+			else
+			{
+				if (gVertexStatus[vertex] == gVertexStatus[start])
+				{
+					gbVertexEqual = true;
 
-					vertexQueue.push(node);
+					return;
 				}
 			}
 		}
@@ -98,66 +81,40 @@ namespace ps1707
 
 	int main(void)
 	{
-		std::cin.sync_with_stdio(false);
+		int testCase;
+		std::cin >> testCase;
 
-		short testCaseCount;
-		std::cin >> testCaseCount;
-
-		while (testCaseCount--)
+		while (testCase--)
 		{
-			for (short index = 1; index <= VERTEX_MAX; index++)
+			int vertexCount; // 1~20000, 1~v
+			int edgeCount; // 1~200000
+
+			std::cin >> vertexCount >> edgeCount;
+
+			for (int count = 0; count < VERTEX_MAX + 1; count++)
 			{
-				gColor[index] = eColor::NotVisited;
-				gGraph[index].clear();
+				gGraph[count].clear();
 			}
 
-			short vertexCount;
-			int edgeCount;
-			std::cin >> vertexCount >> edgeCount;
+			ClearVertexStatus(gVertexStatus, VERTEX_MAX + 1);
+			gbVertexEqual = false;
 
 			for (int count = 0; count < edgeCount; count++)
 			{
-				short vertex1;
-				short vertex2;
-				std::cin >> vertex1 >> vertex2;
+				int vertex1;
+				int vertex2;
 
+				std::cin >> vertex1 >> vertex2;
 				gGraph[vertex1].push_back(vertex2);
 				gGraph[vertex2].push_back(vertex1);
 			}
-			// --그래프 완성 끝--
 
 			for (int count = 1; count <= vertexCount; count++)
 			{
-				if (gColor[count] == eColor::NotVisited)
-				{
-					DFS(count, eColor::Red);
-				}
+				DFS(count, eStatus::Blue);
 			}
 
-			//DFS(1, eColor::Red);
-			// -- 색칠 끝 -- 		
-
-			bool bColorEqual = false;
-
-			for (int index = 1; index <= vertexCount; index++)
-			{
-				size_t size = gGraph[index].size();
-				eColor color = gColor[index];
-
-				for (short count = 0; count < size; count++)
-				{
-					short vertex = gGraph[index][count];
-
-					if (color == gColor[vertex])
-					{
-						bColorEqual = true;
-
-						break;
-					}
-				}
-			}
-
-			if (bColorEqual)
+			if (gbVertexEqual)
 			{
 				std::cout << "NO\n";
 			}

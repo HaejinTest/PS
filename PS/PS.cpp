@@ -1,155 +1,146 @@
 ﻿#include <iostream>
 #include <vector>
-#include <utility>
-#include <queue>
-// 2초
-// 256MB
 
-enum class eColor
+struct Node
 {
-	NotVisited = 0,
-	Red = 1,
-	Blue = 2
+	char Symbol;
+	bool bLeft;
 };
 
-constexpr short VERTEX_MAX = 20000;
-constexpr int EDGE_MAX = 200000;
-std::vector<short> gGraph[VERTEX_MAX + 1];
-eColor gColor[VERTEX_MAX + 1];
+constexpr int NODE_MAX = 26;
+std::vector<Node> gTree[NODE_MAX + 1];
 
-void DFS(short start, eColor color)
+void PreeOrderTraversal(int start)
 {
-	gColor[start] = color;
-	size_t size = gGraph[start].size();
+	size_t size = gTree[start].size();
 
-	for (short index = 0; index < size; index++)
+	if (size == 0)
 	{
-		short vertex = gGraph[start][index];
+		std::cout << (char)(start + 'A');
 
-		if (gColor[vertex] == eColor::NotVisited)
-		{
-			if (color == eColor::Blue)
-			{
-				DFS(vertex, eColor::Red);
-			}
-			else
-			{
-				DFS(vertex, eColor::Blue);
-			}
-		}
+		return;
+	}
+	else if (size == 1)
+	{
+		Node node = gTree[start][0];
+
+		std::cout << (char)(start + 'A');
+		PreeOrderTraversal(node.Symbol - 'A');
+	}
+	else
+	{
+		Node node1 = gTree[start][0];
+		Node node2 = gTree[start][1];
+
+		std::cout << (char)(start + 'A');
+		PreeOrderTraversal(node1.Symbol - 'A');
+		PreeOrderTraversal(node2.Symbol - 'A');
 	}
 }
 
-void BFS(int start)
+void InOrderTraversal(int start)
 {
-	std::queue<short> vertexQueue;
+	size_t size = gTree[start].size();
 
-	if (gColor[start] != eColor::NotVisited)
+	if (size == 0)
 	{
+		std::cout << (char)(start + 'A');
+
 		return;
 	}
-
-	vertexQueue.push(start);
-	gColor[start] = eColor::Red;
-
-	while (vertexQueue.empty() == false)
+	else if (size == 1)
 	{
-		short vertex = vertexQueue.front();
-		vertexQueue.pop();
+		Node node = gTree[start][0];
 
-		size_t size = gGraph[vertex].size();
-
-		for (short index = 0; index < size; index++)
+		if (node.bLeft)
 		{
-			short node = gGraph[vertex][index];
-
-			if (gColor[node] == eColor::NotVisited)
-			{
-				if (gColor[vertex] == eColor::Red)
-				{
-					gColor[node] = eColor::Blue;
-				}
-				else
-				{
-					gColor[node] = eColor::Red;
-				}
-
-				vertexQueue.push(node);
-			}
+			InOrderTraversal(node.Symbol - 'A');
+			std::cout << (char)(start + 'A');
 		}
+		else
+		{
+			std::cout << (char)(start + 'A');
+			InOrderTraversal(node.Symbol - 'A');
+		}
+	}
+	else
+	{
+		Node node1 = gTree[start][0];
+		Node node2 = gTree[start][1];
+
+		InOrderTraversal(node1.Symbol - 'A');
+		std::cout << (char)(start + 'A');
+		InOrderTraversal(node2.Symbol - 'A');
+	}
+}
+
+void PostOrderTraversal(int start)
+{
+	size_t size = gTree[start].size();
+
+	if (size == 0)
+	{
+		std::cout << (char)(start + 'A');
+
+		return;
+	}
+	else if (size == 1)
+	{
+		Node node = gTree[start][0];
+
+		PostOrderTraversal(node.Symbol - 'A');
+		std::cout << (char)(start + 'A');
+	}
+	else
+	{
+		Node node1 = gTree[start][0];
+		Node node2 = gTree[start][1];
+
+		PostOrderTraversal(node1.Symbol - 'A');
+		PostOrderTraversal(node2.Symbol - 'A');
+		std::cout << (char)(start + 'A');
 	}
 }
 
 int main(void)
 {
-	std::cin.sync_with_stdio(false);
+	std::ios_base::sync_with_stdio(false);
 
-	short testCaseCount;
-	std::cin >> testCaseCount;	
-	
-	while (testCaseCount--)
+	int nodeCount;
+	std::cin >> nodeCount;
+
+	for (int count = 0; count < nodeCount; count++)
 	{
-		for (short index = 1; index <= VERTEX_MAX; index++)
+		char node1;
+		char node2;
+		char node3;
+
+		std::cin >> node1 >> node2 >> node3;
+
+		if (node2 != '.')
 		{
-			gColor[index] = eColor::NotVisited;
-			gGraph[index].clear();
+			Node node;
+			node.Symbol = node2;
+			node.bLeft = true;
+
+			gTree[(int)(node1 - 'A')].push_back(node);
 		}
 
-		short vertexCount;
-		int edgeCount;
-		std::cin >> vertexCount >> edgeCount;
-
-		for (int count = 0; count < edgeCount; count++)
+		if (node3 != '.')
 		{
-			short vertex1;
-			short vertex2;
-			std::cin >> vertex1 >> vertex2;
+			Node node;
+			node.Symbol = node3;
+			node.bLeft = false;
 
-			gGraph[vertex1].push_back(vertex2);
-			gGraph[vertex2].push_back(vertex1);
-		}
-		// --그래프 완성 끝--
-
-		for (int count = 1; count <= vertexCount; count++)
-		{
-			if (gColor[count] == eColor::NotVisited)
-			{
-				DFS(count, eColor::Red);
-			}
-		}
-
-		//DFS(1, eColor::Red);
-		// -- 색칠 끝 -- 		
-
-		bool bColorEqual = false;
-
-		for (int index = 1; index <= vertexCount; index++)
-		{
-			size_t size = gGraph[index].size();
-			eColor color = gColor[index];
-
-			for (short count = 0; count < size; count++)
-			{
-				short vertex = gGraph[index][count];
-
-				if (color == gColor[vertex])
-				{
-					bColorEqual = true;
-
-					break;
-				}
-			}
-		}
-
-		if (bColorEqual)
-		{
-			std::cout << "NO\n";
-		}
-		else
-		{
-			std::cout << "YES\n";
+			gTree[(int)(node1 - 'A')].push_back(node);
 		}
 	}
+
+	PreeOrderTraversal(0);
+	std::cout << "\n";
+	InOrderTraversal(0);
+	std::cout << "\n";
+	PostOrderTraversal(0);
 
 	return 0;
 }

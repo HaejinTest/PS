@@ -25,6 +25,9 @@
     <Filter Include="소스 파일\스택">
       <UniqueIdentifier>{bd0b0af9-d2a7-4f6d-b826-0448c4343f41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\다시풀어">
+      <UniqueIdentifier>{e46031f8-7aa1-49ce-8e1b-d0930ff2763c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -37,12 +40,6 @@
     </ClCompile>
     <ClCompile Include="PS.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS1707.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PS11057.cpp">
-      <Filter>소스 파일\그래프</Filter>
     </ClCompile>
     <ClCompile Include="PS11725.cpp">
       <Filter>소스 파일\트리</Filter>
@@ -76,6 +73,15 @@
     </ClCompile>
     <ClCompile Include="PS1463.cpp">
       <Filter>소스 파일\DP</Filter>
+    </ClCompile>
+    <ClCompile Include="PS1707.cpp">
+      <Filter>소스 파일\다시풀어</Filter>
+    </ClCompile>
+    <ClCompile Include="PS11057.cpp">
+      <Filter>소스 파일\DP</Filter>
+    </ClCompile>
+    <ClCompile Include="PS1991.cpp">
+      <Filter>소스 파일\트리</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
