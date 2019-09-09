@@ -180,6 +180,9 @@
     <ClCompile Include="실패율.cpp" />
     <ClCompile Include="오픈채팅방.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="case.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

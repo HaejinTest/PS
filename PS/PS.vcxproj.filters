@@ -102,4 +102,9 @@
       <Filter>소스 파일\그리디</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="case.txt">
+      <Filter>헤더 파일</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
