@@ -28,6 +28,12 @@
     <Filter Include="소스 파일\다시풀어">
       <UniqueIdentifier>{e46031f8-7aa1-49ce-8e1b-d0930ff2763c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\카카오">
+      <UniqueIdentifier>{bcb8a02f-b263-4357-a417-bcaac902f41c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\그리디">
+      <UniqueIdentifier>{d31fb836-c6ea-4fed-8ad4-bfcd4db26bb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -74,9 +80,6 @@
     <ClCompile Include="PS1463.cpp">
       <Filter>소스 파일\DP</Filter>
     </ClCompile>
-    <ClCompile Include="PS1707.cpp">
-      <Filter>소스 파일\다시풀어</Filter>
-    </ClCompile>
     <ClCompile Include="PS11057.cpp">
       <Filter>소스 파일\DP</Filter>
     </ClCompile>
@@ -85,6 +88,18 @@
     </ClCompile>
     <ClCompile Include="PS1260.cpp">
       <Filter>소스 파일\그래프</Filter>
+    </ClCompile>
+    <ClCompile Include="PS1707.cpp">
+      <Filter>소스 파일\그래프</Filter>
+    </ClCompile>
+    <ClCompile Include="실패율.cpp">
+      <Filter>소스 파일\카카오</Filter>
+    </ClCompile>
+    <ClCompile Include="오픈채팅방.cpp">
+      <Filter>소스 파일\카카오</Filter>
+    </ClCompile>
+    <ClCompile Include="PS11047.cpp">
+      <Filter>소스 파일\그리디</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

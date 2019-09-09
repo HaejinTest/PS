@@ -84,7 +84,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -163,6 +163,7 @@
     <ClCompile Include="PS.cpp" />
     <ClCompile Include="PS10799.cpp" />
     <ClCompile Include="PS10844.cpp" />
+    <ClCompile Include="PS11047.cpp" />
     <ClCompile Include="PS11053.cpp" />
     <ClCompile Include="PS11057.cpp" />
     <ClCompile Include="PS11724.cpp" />
@@ -176,6 +177,8 @@
     <ClCompile Include="PS2156.cpp" />
     <ClCompile Include="PS2193.cpp" />
     <ClCompile Include="PS9095.cpp" />
+    <ClCompile Include="실패율.cpp" />
+    <ClCompile Include="오픈채팅방.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
